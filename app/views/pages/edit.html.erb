@@ -27,10 +27,7 @@
 </div>
 
 <script>
-  $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-    var target = $(e.target).attr('href');
-    if ((target == '#preview')) {
-      $('.js-htmlContent').html(tinyMCE.get('tinymce-input').getContent())
-    }
-  });
+  let updatePreview = () => { $('.js-htmlContent').html($('#page_html').val()) };
+  updatePreview();
+  $('#page_html').on('blur', updatePreview);
 </script>

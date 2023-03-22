@@ -16,11 +16,7 @@ Given(/the following pages exist/) do |pages_table|
 end
 
 When(/^(?:|I )fill in the page HTML content with "([^"]*)"$/) do |value|
-  page.execute_script('$(tinyMCE.editors[0].setContent("' + value + '"))')
-end
-
-And(/^(?:|I )should see the page HTML content containing "([^"]*)"$/) do |value|
-  expect(page.execute_script("return tinyMCE.editors[0].getContent()")).to include(value)
+  find_field("HTML Content").set(value)
 end
 
 # TODO: This shouldn't rely on the HTML id.
