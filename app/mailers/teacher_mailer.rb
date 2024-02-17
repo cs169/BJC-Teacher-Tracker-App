@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 class TeacherMailer < ApplicationMailer
-  CONTACT_EMAIL = "Lauren Mock <lmock@berkeley.edu>"
-  BJC_EMAIL = "BJC <contact@bjc.berkeley.edu>"
+  #change CONTACT_EMAIL to cc yourself on the emails that get sent out
+  CONTACT_EMAIL = "Arush Chhatrapati <arushc@berkeley.edu>"
+  BJC_EMAIL = "BJC <arushc@berkeley.edu>"
 
   before_action :email_template
   default content_type: "text/html",
