@@ -10,7 +10,8 @@
         <div class="modal-body">
           <%= hidden_field_tag :action_type, '', class: "form-control action-type" %>
           <%= label_tag 'action_reason', 'Reason', class: 'control-label' %>
-          <%= text_field_tag :action_reason_placeholder, '', class: "form-control action-reason", id: "action_reason" %>
+          <%= text_field_tag :action_reason_placeholder, '', class: "form-control action-reason", id: "action_reason",
+                             required: 'required', placeholder: "Enter a reason" %>
           <!-- <div class="form-group">
             <label for="reason-select">Reason for Denial (Select)</label>
             <select id="reason-select" name="reason-select" class="form-control">
