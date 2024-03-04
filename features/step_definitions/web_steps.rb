@@ -257,3 +257,11 @@ Then(/^"([^"]*)" should be selected for "([^"]*)"(?: within "([^"]*)")?$/) do |v
     field_labeled(field).find(:xpath, ".//option[@selected = 'selected'][text() = '#{value}']").should be_present
   end
 end
+
+Then("I should see dialog box remain open") do
+  expect(page).to have_css(".js-denialModal.show")
+end
+
+Then("I should see dialog box closed") do
+  expect(page).to have_no_css(".js-denialModal.show")
+end

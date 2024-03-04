@@ -6,8 +6,8 @@ Feature: basic admin functionality
 
   Background: Has an Admin in DB
     Given the following teachers exist:
-      | first_name | last_name | admin | email                        |
-      | Joseph     | Mamoa     | true  | testadminuser@berkeley.edu   |
+      | first_name | last_name | admin | email                      |
+      | Joseph     | Mamoa     | true  | testadminuser@berkeley.edu |
 
   Scenario: Logging in as an admin
     Given I am on the BJC home page
@@ -76,8 +76,8 @@ Feature: basic admin functionality
 
   Scenario: Edit teacher info as an admin
     Given the following schools exist:
-      |       name      |     city     |  state  |            website            |  grade_level  |  school_type  |
-      |   UC Berkeley   |   Berkeley   |   CA    |   https://www.berkeley.edu    |  university   |     public    |
+      | name        | city     | state | website                  | grade_level | school_type |
+      | UC Berkeley | Berkeley | CA    | https://www.berkeley.edu | university  | public      |
     Given the following teachers exist:
       | first_name | last_name | admin | email                    | school      | snap   |
       | Joseph     | Mamoa     | false | testteacher@berkeley.edu | UC Berkeley | alonzo |
@@ -132,9 +132,9 @@ Feature: basic admin functionality
       | UC Berkeley | Berkeley | CA    | https://www.berkeley.edu | university  | public      |
     Given the following teachers exist:
       | first_name | last_name  | admin | email                     | school      | application_status |
-      | Victor     | Validateme | false | testteacher1@berkeley.edu | UC Berkeley |      Validated     |
-      | Danny      | Denyme     | false | testteacher2@berkeley.edu | UC Berkeley |       Denied       |
-      | Peter      | Pendme     | false | testteacher3@berkeley.edu | UC Berkeley |     Not Reviewed   |
+      | Victor     | Validateme | false | testteacher1@berkeley.edu | UC Berkeley | Validated          |
+      | Danny      | Denyme     | false | testteacher2@berkeley.edu | UC Berkeley | Denied             |
+      | Peter      | Pendme     | false | testteacher3@berkeley.edu | UC Berkeley | Not Reviewed       |
     Given I am on the BJC home page
     Given I have an admin email
     And   I follow "Log In"
@@ -156,7 +156,7 @@ Feature: basic admin functionality
       | UC Berkeley | Berkeley | CA    | https://www.berkeley.edu | university  | public      |
     Given the following teachers exist:
       | first_name | last_name | admin | email                    | school      | snap   |
-      | Joseph     | Test     | false | testteacher@berkeley.edu | UC Berkeley | alonzo |
+      | Joseph     | Test      | false | testteacher@berkeley.edu | UC Berkeley | alonzo |
     Given I am on the BJC home page
     Given I have an admin email
     And   I follow "Log In"
@@ -173,11 +173,11 @@ Feature: basic admin functionality
 
   Scenario: Edit teacher info as an admin navigating from view only page to edit page
     Given the following schools exist:
-      |       name      |     city     |  state  |            website            |  grade_level  |  school_type  |
-      |   UC Berkeley   |   Berkeley   |   CA    |   https://www.berkeley.edu    |  university   |     public    |
+      | name        | city     | state | website                  | grade_level | school_type |
+      | UC Berkeley | Berkeley | CA    | https://www.berkeley.edu | university  | public      |
     Given the following teachers exist:
       | first_name | last_name | admin | email                    | school      | snap   |
-      | Joseph     | Mamoa New    | false | testteacher@berkeley.edu | UC Berkeley | alonzo |
+      | Joseph     | Mamoa New | false | testteacher@berkeley.edu | UC Berkeley | alonzo |
     Given I am on the BJC home page
     Given I have an admin email
     And   I follow "Log In"
@@ -197,11 +197,11 @@ Feature: basic admin functionality
 
   Scenario: Should be able to resend welcome email
     Given the following schools exist:
-      |       name      |     city     |  state  |            website            |  grade_level  |  school_type  |
-      |   UC Berkeley   |   Berkeley   |   CA    |   https://www.berkeley.edu    |  university   |     public    |
+      | name        | city     | state | website                  | grade_level | school_type |
+      | UC Berkeley | Berkeley | CA    | https://www.berkeley.edu | university  | public      |
     Given the following teachers exist:
       | first_name | last_name | admin | email                    | school      | snap   | application_status |
-      | Joseph     | Mamoa     | false | testteacher@berkeley.edu | UC Berkeley | alonzo | validated |
+      | Joseph     | Mamoa     | false | testteacher@berkeley.edu | UC Berkeley | alonzo | validated          |
     Given I am on the BJC home page
     Given I have an admin email
     And   I follow "Log In"
@@ -253,7 +253,47 @@ Feature: basic admin functionality
     And I fill in "request_reason" with "Complete your profile details"
     And I press "Submit"
     Then I can send a request info email
+    Then I should see dialog box closed
 
+  Scenario: Denying teacher without specifying a reason as an admin should not send email
+    Given the following schools exist:
+      | name        | city     | state | website                  | grade_level | school_type |
+      | UC Berkeley | Berkeley | CA    | https://www.berkeley.edu | university  | public      |
+    And the following teachers exist:
+      | first_name | last_name | admin | email                    | school      |
+      | Joseph     | Mamoa     | false | testteacher@berkeley.edu | UC Berkeley |
+    And I am on the BJC home page
+    And I have an admin email
+    When I follow "Log In"
+    Then I can log in with Google
+    And I press "❌" within "#DataTables_Table_0 > tbody > tr:nth-child(1)"
+    Then I should see "Reason"
+    And I should see "Deny Joseph Mamoa"
+    And I capture the email count
+    And I fill in "denial_reason" with ""
+    And I press "Submit"
+    Then I should see dialog box remain open
+    Then no new emails should have been sent
+
+  Scenario: Requesting more information from a teacher without specifying a reason as an admin should not send email
+    Given the following schools exist:
+      | name        | city     | state | website                  | grade_level | school_type |
+      | UC Berkeley | Berkeley | CA    | https://www.berkeley.edu | university  | public      |
+    And the following teachers exist:
+      | first_name | last_name | admin | email                    | school      |
+      | Joseph     | Mamoa     | false | testteacher@berkeley.edu | UC Berkeley |
+    And I am on the BJC home page
+    And I have an admin email
+    When I follow "Log In"
+    Then I can log in with Google
+    And I press "❓" within "#DataTables_Table_0 > tbody > tr:nth-child(1)"
+    Then I should see "Reason"
+    And I should see "Request Info from Joseph Mamoa"
+    And I capture the email count
+    And I fill in "request_reason" with ""
+    And I press "Submit"
+    Then I should see dialog box remain open
+    Then no new emails should have been sent
 
 # Scenario: Admin can import csv file. The loader should filter invalid record and create associate school.
 #  Given the following schools exist:

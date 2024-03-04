@@ -72,3 +72,12 @@ Then(/I attach the csv "([^"]*)"$/) do |path|
   attach_file("file", File.expand_path(path))
   Capybara.ignore_hidden_elements = true
 end
+
+Given(/I capture the email count/) do
+  # Instance variable gets cleared after each scenario, but can share data across step definitions
+  @initial_email_count = ActionMailer::Base.deliveries.count
+end
+
+Then(/no new emails should have been sent/) do
+  expect(ActionMailer::Base.deliveries.count).to eq @initial_email_count
+end
