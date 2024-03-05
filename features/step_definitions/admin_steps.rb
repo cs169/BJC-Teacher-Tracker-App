@@ -78,6 +78,10 @@ Given(/I capture the email count/) do
   @initial_email_count = ActionMailer::Base.deliveries.count
 end
 
-Then(/no new emails should have been sent/) do
+Then(/I should not see any new email sent out/) do
   expect(ActionMailer::Base.deliveries.count).to eq @initial_email_count
+end
+
+Then(/I should see a new email sent out/) do
+  expect(ActionMailer::Base.deliveries.count).to eq(@initial_email_count + 1)
 end

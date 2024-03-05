@@ -113,8 +113,11 @@ Feature: basic admin functionality
     And   I press "❌" on Actions for first teacher
     Then  the "denial_reason" field should not contain "Test"
     And   I fill in "denial_reason" with "Denial Reason"
+    And   I capture the email count
     And   I press "Submit"
     Then  I can send a deny email
+    Then I should see a new email sent out
+    Then  I should see dialog box closed
 
   Scenario: Not logged in should not have access to edit
     Given the following schools exist:
@@ -250,9 +253,11 @@ Feature: basic admin functionality
     And I press "Cancel"
     And I press "❓" on Actions for first teacher
     Then the "request_reason" field should not contain "Need more details on qualifications"
+    And I capture the email count
     And I fill in "request_reason" with "Complete your profile details"
     And I press "Submit"
     Then I can send a request info email
+    Then I should see a new email sent out
     Then I should see dialog box closed
 
   Scenario: Denying teacher without specifying a reason as an admin should not send email
@@ -273,7 +278,7 @@ Feature: basic admin functionality
     And I fill in "denial_reason" with ""
     And I press "Submit"
     Then I should see dialog box remain open
-    Then no new emails should have been sent
+    Then I should not see any new email sent out
 
   Scenario: Requesting more information from a teacher without specifying a reason as an admin should not send email
     Given the following schools exist:
@@ -293,7 +298,7 @@ Feature: basic admin functionality
     And I fill in "request_reason" with ""
     And I press "Submit"
     Then I should see dialog box remain open
-    Then no new emails should have been sent
+    Then I should not see any new email sent out
 
 # Scenario: Admin can import csv file. The loader should filter invalid record and create associate school.
 #  Given the following schools exist:
