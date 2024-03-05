@@ -265,3 +265,11 @@ end
 Then("I should see dialog box closed") do
   expect(page).to have_no_css(".js-denialModal.show")
 end
+
+When(/^(?:|I )press "([^"]*)" on Actions for first teacher$/) do |button|
+  teacher_actions_scope = "#DataTables_Table_0 tbody tr:first-child"
+
+  within(teacher_actions_scope) do
+    click_button(button)
+  end
+end

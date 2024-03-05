@@ -105,12 +105,12 @@ Feature: basic admin functionality
     Given I have an admin email
     When  I follow "Log In"
     Then  I can log in with Google
-    And   I press "❌" within "#DataTables_Table_0 > tbody > tr:nth-child(1)"
+    And   I press "❌" on Actions for first teacher
     Then  I should see "Reason"
     And   I should see "Deny Joseph Mamoa"
     And   I fill in "denial_reason" with "Test"
     And   I press "Cancel"
-    And   I press "❌" within "#DataTables_Table_0 > tbody > tr:nth-child(1)"
+    And   I press "❌" on Actions for first teacher
     Then  the "denial_reason" field should not contain "Test"
     And   I fill in "denial_reason" with "Denial Reason"
     And   I press "Submit"
@@ -243,12 +243,12 @@ Feature: basic admin functionality
     And I have an admin email
     When I follow "Log In"
     Then I can log in with Google
-    And I press "❓" within "#DataTables_Table_0 > tbody > tr:nth-child(1)"
+    And I press "❓" on Actions for first teacher
     Then I should see "Reason"
     And I should see "Request Info from Joseph Mamoa"
     And I fill in "request_reason" with "Need more details on qualifications"
     And I press "Cancel"
-    And I press "❓" within "#DataTables_Table_0 > tbody > tr:nth-child(1)"
+    And I press "❓" on Actions for first teacher
     Then the "request_reason" field should not contain "Need more details on qualifications"
     And I fill in "request_reason" with "Complete your profile details"
     And I press "Submit"
@@ -266,7 +266,7 @@ Feature: basic admin functionality
     And I have an admin email
     When I follow "Log In"
     Then I can log in with Google
-    And I press "❌" within "#DataTables_Table_0 > tbody > tr:nth-child(1)"
+    And I press "❌" on Actions for first teacher
     Then I should see "Reason"
     And I should see "Deny Joseph Mamoa"
     And I capture the email count
@@ -286,7 +286,7 @@ Feature: basic admin functionality
     And I have an admin email
     When I follow "Log In"
     Then I can log in with Google
-    And I press "❓" within "#DataTables_Table_0 > tbody > tr:nth-child(1)"
+    And I press "❓" on Actions for first teacher
     Then I should see "Reason"
     And I should see "Request Info from Joseph Mamoa"
     And I capture the email count
