@@ -22,13 +22,20 @@
     required: false, id: 'school_city' %>
   </div>
 
-  <div class='col-2' id="state_container">
+  <div class='col-2' id="state_dropdown_container">
     <%= f.label :state, class: "label-required", for: "school_state" %>
     <%= f.select(
         :state,
         School::VALID_STATES,
         { include_blank: "State" },
         { class: 'form-control', required: false, id: 'school_state'}
+    ) %>
+  </div>
+  <div class='col-2' id="state_textfield_container">
+    <%= f.label :state, for: "school_state" %>
+    <%= f.text_field(
+        :state, placeholder: "State",
+        class: 'form-control'
     ) %>
   </div>
 </div>
@@ -102,14 +109,16 @@
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     const countrySelect = document.getElementById('school_country');
-    const stateSelect = document.getElementById('state_container');
+    const stateDropdown = document.getElementById('state_dropdown_container');
+    const stateTextfield = document.getElementById('state_textfield_container');
 
     function handleCountryChange() {
-      const isUSA = countrySelect.value === 'US'; // Check if the selected country is the United States
-      stateSelect.style.display = isUSA ? 'block' : 'none'; // Show or hide the state select
+      const isUSA = countrySelect.value === 'US'; 
+      stateDropdown.style.display = isUSA ? 'block' : 'none'; 
+      stateTextfield.style.display = !isUSA ? 'block' : 'none'; 
     }
 
     countrySelect.addEventListener('change', handleCountryChange);
-    handleCountryChange(); // Call on load in case the form is pre-filled or being edited
+    handleCountryChange(); 
   });
 </script>
