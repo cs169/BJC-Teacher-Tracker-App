@@ -205,7 +205,7 @@ class TeachersController < ApplicationController
     if teacher_params[:school_id].present?
       @school ||= School.find(teacher_params[:school_id])
     end
-    @school ||= School.find_or_create_by(name: school_params[:name], city: school_params[:city], state: school_params[:state])
+    @school ||= School.find_or_create_by(name: school_params[:name], city: school_params[:city], country: school_params[:country], state: school_params[:state])
   end
 
   def teacher_params
@@ -220,7 +220,7 @@ class TeachersController < ApplicationController
 
   def school_params
     return unless params[:school]
-    params.require(:school).permit(:name, :city, :state, :website, :grade_level, :school_type)
+    params.require(:school).permit(:name, :country, :city, :state, :website, :grade_level, :school_type)
   end
 
   def omniauth_data

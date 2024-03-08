@@ -5,6 +5,16 @@
       <%= f.text_field :name, placeholder: 'UC Berkeley', class: 'form-control',
       required: false, id: 'school_name' %>
   </div>
+</div>
+<div class='form-group row'>
+  <div class='col-4'>
+    <%= f.label :country, "Country", class: "label-required", for: "school_country" %>
+    <%= f.country_select(
+      :country,
+      { priority_countries: ['United States'], include_blank: "Select an option" },
+      { class: 'form-control', required: true, id: 'school_country', format: :with_full_country_name}
+    ) %>
+  </div>
 
   <div class='col-4'>
     <%= f.label :city, class: "label-required", for: "school_city" %>
@@ -12,7 +22,7 @@
     required: false, id: 'school_city' %>
   </div>
 
-  <div class='col-2'>
+  <div class='col-2' id="state_container">
     <%= f.label :state, class: "label-required", for: "school_state" %>
     <%= f.select(
         :state,
@@ -88,3 +98,18 @@
         class: "form-control", title: "Please enter a valid NCES ID.", id: "school_nces_id" %>
   </div>
 <%- end %>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const countrySelect = document.getElementById('school_country');
+    const stateSelect = document.getElementById('state_container');
+
+    function handleCountryChange() {
+      const isUSA = countrySelect.value === 'US'; // Check if the selected country is the United States
+      stateSelect.style.display = isUSA ? 'block' : 'none'; // Show or hide the state select
+    }
+
+    countrySelect.addEventListener('change', handleCountryChange);
+    handleCountryChange(); // Call on load in case the form is pre-filled or being edited
+  });
+</script>

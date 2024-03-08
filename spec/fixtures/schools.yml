@@ -4,6 +4,7 @@
 #
 #  id             :integer          not null, primary key
 #  city           :string
+#  country        :string
 #  grade_level    :integer
 #  lat            :float
 #  lng            :float
