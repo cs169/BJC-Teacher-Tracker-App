@@ -23,9 +23,9 @@ Scenario: Logging in as a teacher
 
 Scenario: Logging in as a teacher with Google account should be able to edit their info
   Given the following schools exist:
-  |       name            |     city     |  state  |            website            |
-  |   UC Berkeley         |   Berkeley   |   CA    |   https://www.berkeley.edu    |
-  | Cupertino High School |   Cupertino  |   CA    |      https://chs.fuhsd.org    |
+  |       name            |     country     |     city     |  state  |            website            |
+  |   UC Berkeley         |       US        |   Berkeley   |   CA    |   https://www.berkeley.edu    |
+  | Cupertino High School |       US        |   Cupertino  |   CA    |      https://chs.fuhsd.org    |
   Given the following teachers exist:
   | first_name | last_name | admin | email                    | school      |
   | Joseph     | Mamoa     | false | testteacher@berkeley.edu | UC Berkeley |
@@ -48,8 +48,8 @@ Scenario: Logging in as a teacher with Google account should be able to edit the
 
 Scenario: Logging in as a teacher with Microsoft account should be able to edit their info
   Given the following schools exist:
-  |       name      |     city     |  state  |            website            |
-  |   UC Berkeley   |   Berkeley   |   CA    |   https://www.berkeley.edu    |
+  |       name      |     country     |     city     |  state  |            website            |
+  |   UC Berkeley   |       US        |   Berkeley   |   CA    |   https://www.berkeley.edu    |
   Given the following teachers exist:
   | first_name | last_name | admin | email                    | school      |
   | Joseph     | Mamoa     | false | testteacher@berkeley.edu | UC Berkeley |
@@ -62,8 +62,8 @@ Scenario: Logging in as a teacher with Microsoft account should be able to edit 
 
 Scenario: Logging in as a teacher with Snap account should be able to edit their info
   Given the following schools exist:
-  |       name      |     city     |  state  |            website            |
-  |   UC Berkeley   |   Berkeley   |   CA    |   https://www.berkeley.edu    |
+  |       name      |     country     |     city     |  state  |            website            |
+  |   UC Berkeley   |       US        |   Berkeley   |   CA    |   https://www.berkeley.edu    |
   Given the following teachers exist:
   | first_name | last_name | admin | email                    | school      |
   | Joseph     | Mamoa     | false | testteacher@berkeley.edu | UC Berkeley |
@@ -76,8 +76,8 @@ Scenario: Logging in as a teacher with Snap account should be able to edit their
 
   Scenario: Logging in as a teacher with Clever account should be able to edit their info
   Given the following schools exist:
-  |       name      |     city     |  state  |            website            |
-  |   UC Berkeley   |   Berkeley   |   CA    |   https://www.berkeley.edu    |
+  |       name      |     country     |     city     |  state  |            website            |
+  |   UC Berkeley   |       US        |   Berkeley   |   CA    |   https://www.berkeley.edu    |
   Given the following teachers exist:
   | first_name | last_name | admin | email                    | school      |
   | Joseph     | Mamoa     | false | testteacher@berkeley.edu | UC Berkeley |
@@ -90,8 +90,8 @@ Scenario: Logging in as a teacher with Snap account should be able to edit their
 
 Scenario: Logged in teacher with Not_Reviewed application status can update their info
   Given the following schools exist:
-  |       name      |     city     |  state  |            website            |
-  |   UC Berkeley   |   Berkeley   |   CA    |   https://www.berkeley.edu    |
+  |       name      |     country     |     city     |  state  |            website            |
+  |   UC Berkeley   |       US        |   Berkeley   |   CA    |   https://www.berkeley.edu    |
   Given the following teachers exist:
   | first_name | last_name | admin | email                    | school      | snap   |
   | Joseph     | Mamoa     | false | testteacher@berkeley.edu | UC Berkeley | alonzo |
@@ -106,6 +106,7 @@ Scenario: Logged in teacher with Not_Reviewed application status can update thei
   And   I set my education level target as "High School"
   And   I fill in the school name selectize box with "Cupertino High School" and choose to add a new school
   And   I fill in the following:
+  | Country        | US            |
   | City           | Cupertino             |
   | State          | CA                    |
   | School Website | https://chs.fuhsd.org |
@@ -118,8 +119,8 @@ Scenario: Logged in teacher with Not_Reviewed application status can update thei
   # TODO: Should this test updating to a new school?
   Scenario: Logged in teacher with not_reviewed status cannot change Snap from new form path
   Given the following schools exist:
-  |       name      |     city     |  state  |            website            |
-  |   UC Berkeley   |   Berkeley   |   CA    |   https://www.berkeley.edu    |
+  |       name      |     country     |     city     |  state  |            website            |
+  |   UC Berkeley   |       US        |   Berkeley   |   CA    |   https://www.berkeley.edu    |
   Given the following teachers exist:
   | first_name | last_name | admin | email                    | school      | snap   |
   | Joseph     | Mamoa     | false | testteacher@berkeley.edu | UC Berkeley | alonzo |
@@ -143,8 +144,8 @@ Scenario: Logged in teacher with Not_Reviewed application status can update thei
 
 Scenario: Logged in teacher can only edit their own information
   Given the following schools exist:
-  |       name      |     city     |  state  |            website            |
-  |   UC Berkeley   |   Berkeley   |   CA    |   https://www.berkeley.edu    |
+  |       name      |     country     |     city     |  state  |            website            |
+  |   UC Berkeley   |       US        |   Berkeley   |   CA    |   https://www.berkeley.edu    |
   Given the following teachers exist:
   | first_name | last_name | admin | email                     |
   | Joseph     | Mamoa     | false | testteacher@berkeley.edu  |
@@ -158,8 +159,8 @@ Scenario: Logged in teacher can only edit their own information
 
 Scenario: Logging in as a teacher with not_reviewed status should see "Update" instead of "Submit" when editing info
   Given the following schools exist:
-  |       name      |     city     |  state  |            website            |
-  |   UC Berkeley   |   Berkeley   |   CA    |   https://www.berkeley.edu    |
+  |       name      |     country     |     city     |  state  |            website            |
+  |   UC Berkeley   |       US        |   Berkeley   |   CA    |   https://www.berkeley.edu    |
   Given the following teachers exist:
   | first_name | last_name | admin | email                     |
   | Joseph     | Mamoa     | false | testteacher@berkeley.edu  |
@@ -172,8 +173,8 @@ Scenario: Logging in as a teacher with not_reviewed status should see "Update" i
 
 Scenario: Frontend should not allow Teacher to edit their email
   Given the following schools exist:
-  |       name      |     city     |  state  |            website            |
-  |   UC Berkeley   |   Berkeley   |   CA    |   https://www.berkeley.edu    |
+  |       name      |     country     |     city     |  state  |            website            |
+  |   UC Berkeley   |       US        |   Berkeley   |   CA    |   https://www.berkeley.edu    |
   Given the following teachers exist:
   | first_name | last_name | admin | email                     | snap |
   | Jane       | Austin    | false | testteacher@berkeley.edu  | Jane |
@@ -190,8 +191,8 @@ Scenario: Frontend should not allow Teacher to edit their email
 
 Scenario: Validated teacher should see resend button
   Given the following schools exist:
-  |       name      |     city     |  state  |            website            |
-  |   UC Berkeley   |   Berkeley   |   CA    |   https://www.berkeley.edu    |
+  |       name      |     country     |     city     |  state  |            website            |
+  |   UC Berkeley   |       US        |   Berkeley   |   CA    |   https://www.berkeley.edu    |
   Given the following teachers exist:
   | first_name | last_name | admin | email                     | snap | application_status |
   | Jane       | Austin    | false | testteacher@berkeley.edu  | Jane | validated          |
@@ -204,8 +205,8 @@ Scenario: Validated teacher should see resend button
 
 Scenario: teacher with not_reviewed status should not see resend button
   Given the following schools exist:
-  |       name      |     city     |  state  |            website            |
-  |   UC Berkeley   |   Berkeley   |   CA    |   https://www.berkeley.edu    |
+  |       name      |     country     |     city     |  state  |            website            |
+  |   UC Berkeley   |       US        |   Berkeley   |   CA    |   https://www.berkeley.edu    |
   Given the following teachers exist:
   | first_name | last_name | admin | email                     | snap | application_status |
   | Jane       | Austin    | false | testteacher@berkeley.edu  | Jane | Not Reviewed       |
@@ -218,8 +219,8 @@ Scenario: teacher with not_reviewed status should not see resend button
 
 Scenario: Denied teacher should not see resend button
   Given the following schools exist:
-  |       name      |     city     |  state  |            website            |
-  |   UC Berkeley   |   Berkeley   |   CA    |   https://www.berkeley.edu    |
+  |       name      |     country     |     city     |  state  |            website            |
+  |   UC Berkeley   |       US        |   Berkeley   |   CA    |   https://www.berkeley.edu    |
   Given the following teachers exist:
   | first_name | last_name | admin | email                     | snap | application_status |
   | Jane       | Austin    | false | testteacher@berkeley.edu  | Jane | denied |
@@ -232,8 +233,8 @@ Scenario: Denied teacher should not see resend button
 
 Scenario: Denied teacher cannot edit their information
   Given the following schools exist:
-  |       name      |     city     |  state  |            website            |
-  |   UC Berkeley   |   Berkeley   |   CA    |   https://www.berkeley.edu    |
+  |       name      |     country     |     city     |  state  |            website            |
+  |   UC Berkeley   |       US        |   Berkeley   |   CA    |   https://www.berkeley.edu    |
   Given the following teachers exist:
   | first_name | last_name | admin | email                     | snap | application_status | more_info |
   | Jane       | Austin    | false | testteacher@berkeley.edu  | Jane | denied | Original Information |
@@ -248,8 +249,8 @@ Scenario: Denied teacher cannot edit their information
 
 Scenario: Validated teacher should not see Tags or NCES ID
   Given the following schools exist:
-  |       name      |     city     |  state  |            website            |
-  |   UC Berkeley   |   Berkeley   |   CA    |   https://www.berkeley.edu    |
+  |       name      |     country     |     city     |  state  |            website            |
+  |   UC Berkeley   |       US        |   Berkeley   |   CA    |   https://www.berkeley.edu    |
   Given the following teachers exist:
   | first_name | last_name | admin | email                     | snap | application_status |
   | Jane       | Austin    | false | testteacher@berkeley.edu  | Jane | validated          |
@@ -263,8 +264,8 @@ Scenario: Validated teacher should not see Tags or NCES ID
 
 Scenario: Teacher with not_reviewed status should not see Tags or NCES ID
   Given the following schools exist:
-  |       name      |     city     |  state  |            website            |
-  |   UC Berkeley   |   Berkeley   |   CA    |   https://www.berkeley.edu    |
+  |       name      |     country     |     city     |  state  |            website            |
+  |   UC Berkeley   |       US        |   Berkeley   |   CA    |   https://www.berkeley.edu    |
   Given the following teachers exist:
   | first_name | last_name | admin | email                     | snap | application_status |
   | Jane       | Austin    | false | testteacher@berkeley.edu  | Jane | Not Reviewed          |
@@ -278,8 +279,8 @@ Scenario: Teacher with not_reviewed status should not see Tags or NCES ID
 
 Scenario: Denied teacher should not see Tags or NCES ID
   Given the following schools exist:
-  |       name      |     city     |  state  |            website            |
-  |   UC Berkeley   |   Berkeley   |   CA    |   https://www.berkeley.edu    |
+  |       name      |     country     |     city     |  state  |            website            |
+  |   UC Berkeley   |       US        |   Berkeley   |   CA    |   https://www.berkeley.edu    |
   Given the following teachers exist:
   | first_name | last_name | admin | email                     | snap | application_status |
   | Jane       | Austin    | false | testteacher@berkeley.edu  | Jane | denied |

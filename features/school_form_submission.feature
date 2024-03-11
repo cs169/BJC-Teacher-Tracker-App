@@ -5,9 +5,9 @@ Feature: view schools
 
 Scenario: Viewing the schools page should show the all current schools
     Given the following schools exist:
-    |       name        |     city     |  state  |            website            |
-    |   UC Irvine       |   Irvine     |   CA    |   https://www.uci.edu         |
-    |   UC Scam Diego   |   La Jolla   |   CA    |   https://www.ucsd.edu        |
+    |       name        |     country     |     city     |  state  |            website            |
+    |   UC Irvine       |       US        |   Irvine     |   CA    |   https://www.uci.edu         |
+    |   UC Scam Diego   |       US        |   La Jolla   |   CA    |   https://www.ucsd.edu        |
     And the following teachers exist:
     |  first_name  |   last_name   |  admin  |          email        |    school   |
     |    Admin     |      User     |   true  | testadminuser@berkeley.edu | UC Berkeley |

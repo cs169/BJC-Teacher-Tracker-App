@@ -43,6 +43,7 @@ RSpec.describe SchoolsController, type: :request do
           school: {
               name: @create_school_name,
               city: "Berkeley",
+              country: "US",
               state: "CA",
               website: "www.berkeley.edu",
               school_type: "public",
@@ -61,6 +62,7 @@ RSpec.describe SchoolsController, type: :request do
         school: {
           name: @create_school_name,
           # missing city
+          country: "US",
           state: "CA",
           website: "www.berkeley.edu",
           school_type: "public",
@@ -75,6 +77,7 @@ RSpec.describe SchoolsController, type: :request do
       post schools_path, params: {
         school: {
             name: @create_school_name,
+            country: "US",
             city: "Berkeley",
             state: "CA",
             # missing website
@@ -90,6 +93,7 @@ RSpec.describe SchoolsController, type: :request do
       post schools_path, params: {
         school: {
           # missing name
+          country: "US",
           city: "Berkeley",
           state: "CA",
           website: "www.berkeley.edu",
@@ -109,6 +113,7 @@ RSpec.describe SchoolsController, type: :request do
       post schools_path, params: {
         school: {
           name: @create_school_name,
+          country: "US",
           city: "Berkeley",
           state: "DISTRESS",
           website: "www.berkeley.edu",
@@ -124,6 +129,7 @@ RSpec.describe SchoolsController, type: :request do
       post schools_path, params: {
         school: {
           name: @create_school_name,
+          country: "US",
           city: "Berkeley",
           state: "CA",
           website: "wwwberkeleyedu",
@@ -140,6 +146,7 @@ RSpec.describe SchoolsController, type: :request do
       expect { post schools_path, params: {
         school: {
             name: @create_school_name,
+            country: "US",
             city: "Berkeley",
             state: "CA",
             website: "www.berkeley.edu",
@@ -157,6 +164,7 @@ RSpec.describe SchoolsController, type: :request do
               params: {
                   school: {
                       name: @create_school_name,
+                      country: "US",
                       city: "Berkeley",
                       state: "CA",
                       website: "www.berkeley.edu",
@@ -177,6 +185,7 @@ RSpec.describe SchoolsController, type: :request do
       post schools_path, params: {
         school: {
           name: @create_school_name,
+          country: "US",
           city: "Berkeley",
           state: "CA",
           website: "www.berkeley.edu",
@@ -189,6 +198,7 @@ RSpec.describe SchoolsController, type: :request do
       post schools_path, params: {
         school: {
           name: @create_school_name,
+          country: "US",
           city: "Berkeley",
           state: "CA",
           website: "www.berkeley.edu",

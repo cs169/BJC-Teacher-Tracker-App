@@ -22,21 +22,14 @@
     required: false, id: 'school_city' %>
   </div>
 
-  <div class='col-2' id="state_dropdown_container">
+  <div class='col-2' id="state_select_container">
     <%= f.label :state, class: "label-required", for: "school_state" %>
-    <%= f.select(
-        :state,
-        School::VALID_STATES,
-        { include_blank: "State" },
-        { class: 'form-control', required: false, id: 'school_state'}
-    ) %>
+    <%= f.select :state, School::VALID_STATES, { include_blank: "State" }, { id: "state_select", class: 'form-control' } %>
   </div>
+
   <div class='col-2' id="state_textfield_container">
     <%= f.label :state, for: "school_state" %>
-    <%= f.text_field(
-        :state, placeholder: "State",
-        class: 'form-control'
-    ) %>
+    <%= f.text_field :state, placeholder: "State", class: 'form-control', id: "state_textfield" %>
   </div>
 </div>
 
@@ -108,17 +101,33 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    const countrySelect = document.getElementById('school_country');
-    const stateDropdown = document.getElementById('state_dropdown_container');
-    const stateTextfield = document.getElementById('state_textfield_container');
+    const countrySelected = document.getElementById('school_country');
+
+    const stateSelectContainer = document.getElementById('state_select_container');
+    const stateTextfieldContainer = document.getElementById('state_textfield_container');
+
+    const stateSelect = document.getElementById('state_select');
+    const stateTextfield = document.getElementById('state_textfield');
 
     function handleCountryChange() {
-      const isUSA = countrySelect.value === 'US'; 
-      stateDropdown.style.display = isUSA ? 'block' : 'none'; 
-      stateTextfield.style.display = !isUSA ? 'block' : 'none'; 
+      if (countrySelected.value === 'US') {
+        stateSelectContainer.style.display = 'block';
+        stateSelectContainer.required = true;
+        stateTextfieldContainer.style.display = 'none'
+
+        stateTextfield.removeAttribute('name'); 
+        stateSelect.setAttribute('name', 'school[state]');
+      } else {
+        stateTextfieldContainer.style.display = 'block';
+        stateTextfieldContainer.required = false;
+        stateSelectContainer.style.display = 'none';
+
+        stateSelect.removeAttribute('name');
+        stateTextfield.setAttribute('name', 'school[state]');
+      }
     }
 
-    countrySelect.addEventListener('change', handleCountryChange);
+    countrySelected.addEventListener('change', handleCountryChange);
     handleCountryChange(); 
   });
 </script>
