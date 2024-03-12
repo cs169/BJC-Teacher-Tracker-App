@@ -98,7 +98,19 @@ When(/^(?:|I )fill in the following:$/) do |fields|
 end
 
 When(/^(?:|I )select "([^"]*)" from "([^"]*)"$/) do |value, field|
-  select(value, from: field)
+  # Find the select element
+  select_box = find_field(field)
+
+  # Find all options with the specified value
+  options = select_box.all('option', text: value)
+
+  if options.length > 1
+    # If there are multiple options with the same value, choose the first one
+    options.first.select_option
+  else
+    # If there's only one option or no option, use the default select method
+    select(value, from: field)
+  end
 end
 
 When(/^(?:|I )check "([^"]*)"$/) do |field|
@@ -257,7 +269,6 @@ Then(/^"([^"]*)" should be selected for "([^"]*)"(?: within "([^"]*)")?$/) do |v
     field_labeled(field).find(:xpath, ".//option[@selected = 'selected'][text() = '#{value}']").should be_present
   end
 end
-
 Then(/^I should see a "(.*?)" flash message "(.*?)"$/) do |alert_type, message|
   within(".alert.alert-#{alert_type}") do
     expect(page).to have_text(message)

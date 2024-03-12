@@ -96,8 +96,8 @@ Feature: basic admin functionality
 
   Scenario: Changing application status as admin sends emails
     Given the following schools exist:
-      |       name      |     city     |  state  |            website            |  grade_level  |  school_type  |
-      |   UC Berkeley   |   Berkeley   |   CA    |   https://www.berkeley.edu    |  university   |     public    |
+      |       name      |     country     |     city     |  state  |            website            |  grade_level  |  school_type  |
+      |   UC Berkeley   |       US        |   Berkeley   |   CA    |   https://www.berkeley.edu    |  university   |     public    |
     Given the following teachers exist:
       | first_name | last_name  | admin | email                    | school      | snap   | application_status |
       | Bobby      | John       | false | testteacher@berkeley.edu | UC Berkeley | bobby  | denied             |
@@ -131,8 +131,8 @@ Feature: basic admin functionality
 
   Scenario: Updating without changing application status does not send email
     Given the following schools exist:
-      |       name      |     city     |  state  |            website            |  grade_level  |  school_type  |
-      |   UC Berkeley   |   Berkeley   |   CA    |   https://www.berkeley.edu    |  university   |     public    |
+      |       name      |     country     |     city     |  state  |            website            |  grade_level  |  school_type  |
+      |   UC Berkeley   |       US        |   Berkeley   |   CA    |   https://www.berkeley.edu    |  university   |     public    |
     Given the following teachers exist:
       | first_name | last_name  | admin | email                    | school      | snap   | application_status |
       | Bobby      | John       | false | testteacher@berkeley.edu | UC Berkeley | bobby  | denied             |
@@ -149,8 +149,8 @@ Feature: basic admin functionality
 
   Scenario: Updating application status persists changes in database
     Given the following schools exist:
-      |       name      |     city     |  state  |            website            |  grade_level  |  school_type  |
-      |   UC Berkeley   |   Berkeley   |   CA    |   https://www.berkeley.edu    |  university   |     public    |
+      |       name      |     country     |     city     |  state  |            website            |  grade_level  |  school_type  |
+      |   UC Berkeley   |       US        |   Berkeley   |   CA    |   https://www.berkeley.edu    |  university   |     public    |
     Given the following teachers exist:
       | first_name | last_name  | admin | email                    | school      | snap   | application_status |
       | Bobby      | John       | false | testteacher@berkeley.edu | UC Berkeley | bobby  | denied             |

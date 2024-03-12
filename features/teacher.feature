@@ -39,8 +39,9 @@ Scenario: Logging in as a teacher with Google account should be able to edit the
   And   I set my status as "I am a TEALS volunteer, and am teaching the BJC curriculum."
   And   I set my education level target as "College"
   And   I fill in the school name selectize box with "Cupertino High School, Cupertino, CA" and choose to add a new school
+  And   I select "United States" from "Country"
   And   I enter my "City" as "Cupertino"
-  And   I select "CA" from "State"
+  And   I select "CA" from "state_select"
   And   I enter my "School Website" as "https://chs.fuhsd.org"
   And   I press "Update"
   Then  I see a confirmation "Successfully updated your information"
@@ -105,13 +106,12 @@ Scenario: Logged in teacher with Not_Reviewed application status can update thei
   And   I set my status as "I am teaching BJC as an AP CS Principles course."
   And   I set my education level target as "High School"
   And   I fill in the school name selectize box with "Cupertino High School" and choose to add a new school
-  And   I fill in the following:
-  | Country        | US            |
-  | City           | Cupertino             |
-  | State          | CA                    |
-  | School Website | https://chs.fuhsd.org |
-  | Grade Level    | High School           |
-  | School Type    | Public                |
+  And   I select "United States" from "Country"
+  And   I enter my "City" as "Cupertino"
+  And   I select "CA" from "state_select"
+  And   I enter my "School Website" as "https://chs.fuhsd.org"
+  And   I select "High School" from "Grade Level"
+  And   I select "Public" from "School Type"
   And   I press "Update"
   Then  I see a confirmation "Successfully updated your information"
   And   I am on the edit page for Joe Mamoa
@@ -135,8 +135,9 @@ Scenario: Logged in teacher with Not_Reviewed application status can update thei
   And   I set my status as "I am teaching BJC as an AP CS Principles course."
   And   I set my education level target as "High School"
   And   I fill in the school name selectize box with "Cupertino High School" and choose to add a new school
+  And   I select "United States" from "Country"
   And   I enter my "City" as "Cupertino"
-  And   I select "CA" from "State"
+  And   I select "CA" from "state_select"
   And   I enter my "School Website" as "https://chs.fuhsd.org"
   And   I press "Update"
   And   I should see "Edit Joe Mamoa"

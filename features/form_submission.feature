@@ -19,8 +19,9 @@ Feature: submit a form as a teacher
     And   I fill in "More Information" with "I am after school volunteer"
     And   I enter my "Personal or Course Website" as "https://chs.fuhsd.org"
     And   I fill in the school name selectize box with "Cupertino High School" and choose to add a new school
+    And   I select "United States" from "Country"
     And   I enter my "City" as "Cupertino"
-    And   I select "CA" from "State"
+    And   I select "CA" from "state_select"
     And   I enter my "School Website" as "https://chs.fuhsd.org"
     And   I select "University" from "Grade Level"
     And   I select "Public" from "School Type"
@@ -34,8 +35,9 @@ Feature: submit a form as a teacher
     And   I enter my "Last Name" as "Zhu"
     And   I set my status as "I am teaching BJC as an AP CS Principles course."
     And   I fill in the school name selectize box with "Cupertino High School" and choose to add a new school
+    And   I select "United States" from "Country"
     And   I enter my "City" as "Cupertino"
-    And   I select "CA" from "State"
+    And   I select "CA" from "state_select"
     And   I enter my "School Website" as "chs.fuhsd.org"
     And   I select "University" from "Grade Level"
     And   I select "Public" from "School Type"
@@ -54,8 +56,9 @@ Feature: submit a form as a teacher
     And   I set my education level target as "High School"
     And   I enter my "Personal or Course Website" as "https://chs.fuhsd.org"
     And   I fill in the school name selectize box with "Cupertino High School" and choose to add a new school
+    And   I select "United States" from "Country"
     And   I enter my "City" as "Cupertino"
-    And   I select "CA" from "State"
+    And   I select "CA" from "state_select"
     And   I enter my "School Website" as "https://chs.fuhsd.org"
     And   I select "University" from "Grade Level"
     And   I select "Public" from "School Type"
@@ -73,8 +76,9 @@ Feature: submit a form as a teacher
     And I set my education level target as "High School"
     And I fill in "More Information" with "I am teaching BJC"
     And I fill in the school name selectize box with "Stafford High School" and choose to add a new school
+    And   I select "United States" from "Country"
     And I enter my "City" as "Palo Alto"
-    And I select "CA" from "State"
+    And I select "CA" from "state_select"
     And I enter my "School Website" as "stafford"
     And I select "University" from "Grade Level"
     And I select "Public" from "School Type"
@@ -91,8 +95,9 @@ Feature: submit a form as a teacher
     And I set my education level target as "High School"
     And I fill in "More Information" with "I am teaching BJC"
     And I fill in the school name selectize box with "Stafford High School" and choose to add a new school
+    And   I select "United States" from "Country"
     And I enter my "City" as "Palo Alto"
-    And I select "CA" from "State"
+    And I select "CA" from "state_select"
     And I enter my "School Website" as "stafford"
     And I select "University" from "Grade Level"
     And I select "Public" from "School Type"
@@ -109,8 +114,9 @@ Feature: submit a form as a teacher
     And I set my education level target as "High School"
     And I fill in "More Information" with "I am teaching BJC"
     And I fill in the school name selectize box with "Stafford High School" and choose to add a new school
+    And   I select "United States" from "Country"
     And I enter my "City" as "Palo Alto"
-    And I select "CA" from "State"
+    And I select "CA" from "state_select"
     And I enter my "School Website" as "https://stafford.edu"
     And I select "University" from "Grade Level"
     And I select "Public" from "School Type"
@@ -129,8 +135,9 @@ Feature: submit a form as a teacher
     And I set my education level target as "High School"
     And I fill in "More Information" with "I am teaching BJC"
     And I fill in the school name selectize box with "Cupertino High School" and choose to add a new school
+    And   I select "United States" from "Country"
     And I enter my "City" as "Cupertino"
-    And I select "CA" from "State"
+    And I select "CA" from "state_select"
     And I enter my "School Website" as "https://chs.fuhsd.org"
     And I select "University" from "Grade Level"
     And I select "Public" from "School Type"
@@ -152,8 +159,9 @@ Feature: submit a form as a teacher
     And I fill in "More Information" with "I am teaching BJC"
     And I set my education level target as "High School"
     And I fill in the school name selectize box with "Cupertino High School" and choose to add a new school
+    And   I select "United States" from "Country"
     And I enter my "City" as "Cupertino"
-    And I select "CA" from "State"
+    And I select "CA" from "state_select"
     And I enter my "School Website" as "https://chs.fuhsd.org"
     And I select "University" from "Grade Level"
     And I select "Public" from "School Type"
@@ -173,8 +181,9 @@ Feature: submit a form as a teacher
     And I fill in "More Information" with "I am a TEALS program employee!"
     And I set my education level target as "High School"
     And I fill in the school name selectize box with "Castro Valley High School" and choose to add a new school
+    And   I select "United States" from "Country"
     And I enter my "City" as "Castro Valley"
-    And I select "CA" from "State"
+    And I select "CA" from "state_select"
     And I enter my "School Website" as "https://cvhs.cv.k12.ca.us"
     And I select "University" from "Grade Level"
     And I select "Public" from "School Type"
@@ -201,8 +210,9 @@ Feature: submit a form as a teacher
     And I fill in "More Information" with "Rebecca"
     And I set my education level target as "High School"
     And I fill in the school name selectize box with "Castro Valley High School" and choose to add a new school
+    And   I select "United States" from "Country"
     And I enter my "City" as "Castro Valley"
-    And I select "CA" from "State"
+    And I select "CA" from "state_select"
     And I enter my "School Website" as "https://cvhs.cv.k12.ca.us"
     And I select "University" from "Grade Level"
     And I select "Public" from "School Type"
@@ -222,8 +232,8 @@ Feature: submit a form as a teacher
 
   Scenario: Teacher updates information and two emails are sent
     Given the following schools exist:
-      | name        | city     | state | website                  | grade_level | school_type |
-      | UC Berkeley | Berkeley | CA    | https://www.berkeley.edu | university  | public      |
+      |       name      |     country     |     city     |  state  |            website            |  grade_level  |  school_type  |
+      |   UC Berkeley   |       US        |   Berkeley   |   CA    |   https://www.berkeley.edu    |  university   |     public    |
     And the following teachers exist:
       | first_name | last_name | admin | email                    | school      | application_status |
       | Joseph     | Mamoa     | false | testteacher@berkeley.edu | UC Berkeley | info_needed        |

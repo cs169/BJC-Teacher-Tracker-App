@@ -4,6 +4,7 @@
 FactoryBot.define do
   factory :school do
     name { "Basic School" }
+    country { "US" }
     city { "Berkeley" }
     state { "CA" }
     grade_level { 4 }

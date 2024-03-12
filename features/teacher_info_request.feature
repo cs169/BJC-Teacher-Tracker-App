@@ -11,8 +11,8 @@ Feature: Request additional information for teacher application
 
   Scenario: Admin requests more information and teacher sees notification upon login
     Given the following schools exist:
-      | name        | city     | state | website                  | grade_level | school_type |
-      | UC Berkeley | Berkeley | CA    | https://www.berkeley.edu | university  | public      |
+      |       name      |     country     |     city     |  state  |            website            |  grade_level  |  school_type  |
+      |   UC Berkeley   |       US        |   Berkeley   |   CA    |   https://www.berkeley.edu    |  university   |     public    |
     And the following teachers exist:
       | first_name | last_name | admin | email                    | school      |
       | Joseph     | Mamoa     | false | testteacher@berkeley.edu | UC Berkeley |
@@ -36,8 +36,8 @@ Feature: Request additional information for teacher application
 
   Scenario: Teacher updates information as requested and sees updated application status upon re-login
     Given the following schools exist:
-      | name        | city     | state | website                  | grade_level | school_type |
-      | UC Berkeley | Berkeley | CA    | https://www.berkeley.edu | university  | public      |
+      |       name      |     country     |     city     |  state  |            website            |  grade_level  |  school_type  |
+      |   UC Berkeley   |       US        |   Berkeley   |   CA    |   https://www.berkeley.edu    |  university   |     public    |
     And the following teachers exist:
       | first_name | last_name | admin | email                    | school      | application_status |
       | Joseph     | Mamoa     | false | testteacher@berkeley.edu | UC Berkeley | info_needed        |

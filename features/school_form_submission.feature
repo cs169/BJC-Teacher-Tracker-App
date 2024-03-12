@@ -47,8 +47,9 @@ Scenario: Admins can create new schools
     Then I can log in with Google
     When I go to the new schools page
     And I fill in the school name selectize box with "New UC Berkeley" and choose to add a new school
+    And I select "United States" from "Country"
     And I fill in "City" with "Berkeley"
-    And I select "CA" from "State"
+    And I select "CA" from "state_select"
     And I fill in "School Website" with "https://www.berkeley.edu/"
     And I select "University" from "Grade Level"
     And I select "Public" from "School Type"
