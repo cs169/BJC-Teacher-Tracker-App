@@ -102,7 +102,7 @@ When(/^(?:|I )select "([^"]*)" from "([^"]*)"$/) do |value, field|
   select_box = find_field(field)
 
   # Find all options with the specified value
-  options = select_box.all('option', text: value)
+  options = select_box.all("option", text: value)
 
   if options.length > 1
     # If there are multiple options with the same value, choose the first one
