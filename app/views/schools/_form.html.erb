@@ -3,7 +3,7 @@
   <div class='col'>
       <%= f.label :name, "School Name", class: "label-required" %>
       <%= f.text_field :name, placeholder: 'Name of School', class: 'form-control',
-      required: false, id: 'school_name' %>
+      required: true, id: 'school_name' %>
   </div>
 </div>
 <div class='form-group row'>
@@ -37,7 +37,7 @@
 <div class="form-group">
   <%= f.label :website, "School Website", class: "label-required", for: "school_website" %>
   <%= f.url_field :website, placeholder: "https://snap.berkeley.edu",
-      class: "form-control", required: false,
+      class: "form-control", required: true,
       title: "Please enter a valid URL",
       id: 'school_website' %>
 </div>
