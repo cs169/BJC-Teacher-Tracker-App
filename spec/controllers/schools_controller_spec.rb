@@ -71,7 +71,7 @@ RSpec.describe SchoolsController, type: :request do
             nces_id: 123456789000
           }
         }
-      rescue ActiveRecord::RecordInvalid => e
+      rescue ActiveRecord::RecordInvalid
         expect(School.find_by(name: @create_school_name)).to be_nil
         expect(flash[:alert]).not_to be_present
       end
@@ -90,7 +90,7 @@ RSpec.describe SchoolsController, type: :request do
             nces_id: 123456789000
         }
       }
-      rescue ActiveRecord::RecordInvalid => e
+      rescue ActiveRecord::RecordInvalid
         expect(School.find_by(name: @create_school_name)).to be_nil
         expect(flash[:alert]).not_to be_present
       end
@@ -109,7 +109,7 @@ RSpec.describe SchoolsController, type: :request do
             nces_id: 123456789000
           }
         }
-      rescue ActiveRecord::RecordInvalid => e
+      rescue ActiveRecord::RecordInvalid
         expect(School.find_by(name: @create_school_name)).to be_nil
         expect(flash[:alert]).not_to be_present
       end
@@ -132,7 +132,7 @@ RSpec.describe SchoolsController, type: :request do
             nces_id: 123456789000
           }
         }
-      rescue ActiveRecord::RecordInvalid => e
+      rescue ActiveRecord::RecordInvalid
         expect(School.find_by(name: @create_school_name)).to be_nil
         expect(flash[:alert]).not_to be_present
       end
@@ -151,7 +151,7 @@ RSpec.describe SchoolsController, type: :request do
             nces_id: 123456789000
           }
         }
-      rescue ActiveRecord::RecordInvalid => e
+      rescue ActiveRecord::RecordInvalid
         expect(School.find_by(name: @create_school_name)).to be_nil
         expect(flash[:alert]).not_to be_present
       end
@@ -228,7 +228,7 @@ RSpec.describe SchoolsController, type: :request do
               nces_id: 123456789000
           }
         }
-      rescue ActiveRecord::RecordInvalid => e
+      rescue ActiveRecord::RecordInvalid
         expect(School.find_by(name: @create_school_name)).to be_nil
         expect(flash[:alert]).not_to be_present
       end
