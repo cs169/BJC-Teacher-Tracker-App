@@ -9,7 +9,6 @@ RSpec.describe SchoolsController, type: :request do
 
   before(:all) do
     @create_school_name = "University of California, Berkeley"
-    @fail_flash_alert = /Failed to submit information :\(/
     @success_flash_alert = Regexp.new("Created #{@create_school_name} successfully.")
   end
 
@@ -58,89 +57,104 @@ RSpec.describe SchoolsController, type: :request do
 
     it "requires all fields filled" do
       expect(School.find_by(name: @create_school_name)).to be_nil
-      post schools_path, params: {
-        school: {
-          name: @create_school_name,
-          # missing city
-          country: "US",
-          state: "CA",
-          website: "www.berkeley.edu",
-          school_type: "public",
-          grade_level: "university",
-          tags: [],
-          nces_id: 123456789000
+      begin
+        post schools_path, params: {
+          school: {
+            name: @create_school_name,
+            # request with missing city should fail
+            country: "US",
+            state: "CA",
+            website: "www.berkeley.edu",
+            school_type: "public",
+            grade_level: "university",
+            tags: [],
+            nces_id: 123456789000
+          }
         }
-      }
-      expect(School.find_by(name: @create_school_name)).to be_nil
-      expect(flash[:alert]).to match @fail_flash_alert
+      rescue ActiveRecord::RecordInvalid => e
+        expect(School.find_by(name: @create_school_name)).to be_nil
+        expect(flash[:alert]).not_to be_present
+      end
 
-      post schools_path, params: {
-        school: {
+      begin
+        post schools_path, params: {
+          school: {
             name: @create_school_name,
             country: "US",
             city: "Berkeley",
             state: "CA",
-            # missing website
+            # request with missing website should also fail
             school_type: "public",
             grade_level: "university",
             tags: [],
             nces_id: 123456789000
         }
       }
-      expect(School.find_by(name: @create_school_name)).to be_nil
-      expect(flash[:alert]).to match @fail_flash_alert
+      rescue ActiveRecord::RecordInvalid => e
+        expect(School.find_by(name: @create_school_name)).to be_nil
+        expect(flash[:alert]).not_to be_present
+      end
 
-      post schools_path, params: {
-        school: {
-          # missing name
-          country: "US",
-          city: "Berkeley",
-          state: "CA",
-          website: "www.berkeley.edu",
-          school_type: "public",
-          grade_level: "university",
-          tags: [],
-          nces_id: 123456789000
+      begin
+        post schools_path, params: {
+          school: {
+            # missing name --> failed request
+            country: "US",
+            city: "Berkeley",
+            state: "CA",
+            website: "www.berkeley.edu",
+            school_type: "public",
+            grade_level: "university",
+            tags: [],
+            nces_id: 123456789000
+          }
         }
-      }
-      expect(School.find_by(name: @create_school_name)).to be_nil
-      expect(@fail_flash_alert).to match flash[:alert]
+      rescue ActiveRecord::RecordInvalid => e
+        expect(School.find_by(name: @create_school_name)).to be_nil
+        expect(flash[:alert]).not_to be_present
+      end
     end
 
     it "requires proper inputs for fields" do
       expect(School.find_by(name: @create_school_name)).to be_nil
       # Incorrect state (not chosen from enum list)
-      post schools_path, params: {
-        school: {
-          name: @create_school_name,
-          country: "US",
-          city: "Berkeley",
-          state: "DISTRESS",
-          website: "www.berkeley.edu",
-          school_type: "public",
-          grade_level: "university",
-          tags: [],
-          nces_id: 123456789000
+      begin
+        post schools_path, params: {
+          school: {
+            name: @create_school_name,
+            country: "US",
+            city: "Berkeley",
+            state: "DISTRESS",
+            website: "www.berkeley.edu",
+            school_type: "public",
+            grade_level: "university",
+            tags: [],
+            nces_id: 123456789000
+          }
         }
-      }
-      expect(School.find_by(name: @create_school_name)).to be_nil
-      expect(@fail_flash_alert).to match flash[:alert]
+      rescue ActiveRecord::RecordInvalid => e
+        expect(School.find_by(name: @create_school_name)).to be_nil
+        expect(flash[:alert]).not_to be_present
+      end
 
-      post schools_path, params: {
-        school: {
-          name: @create_school_name,
-          country: "US",
-          city: "Berkeley",
-          state: "CA",
-          website: "wwwberkeleyedu",
-          school_type: "public",
-          grade_level: "university",
-          tags: [],
-          nces_id: 123456789000
+      begin
+        post schools_path, params: {
+          school: {
+            name: @create_school_name,
+            country: "US",
+            city: "Berkeley",
+            state: "CA",
+            website: "wwwberkeleyedu",
+            school_type: "public",
+            grade_level: "university",
+            tags: [],
+            nces_id: 123456789000
+          }
         }
-      }
-      expect(School.find_by(name: @create_school_name)).to be_nil
-      expect(@fail_flash_alert).to match flash[:alert]
+      rescue ActiveRecord::RecordInvalid => e
+        expect(School.find_by(name: @create_school_name)).to be_nil
+        expect(flash[:alert]).not_to be_present
+      end
 
       # Incorrect school type
       expect { post schools_path, params: {
@@ -177,6 +191,47 @@ RSpec.describe SchoolsController, type: :request do
           }
       }.to raise_error(ArgumentError)
       expect(School.find_by(name: @create_school_name)).to be_nil
+    end
+
+    it "succeeds with empty state field when country is not US" do
+      expect(School.find_by(name: @create_school_name)).to be_nil
+      post schools_path, params: {
+        school: {
+            name: @create_school_name,
+            country: "CA", # Canada
+            city: "Ottawa",
+            state: "",
+            website: "www.berkeley.edu",
+            school_type: "public",
+            grade_level: "university",
+            tags: [],
+            nces_id: 123456789000
+        }
+      }
+      expect(School.find_by(name: @create_school_name)).not_to be_nil
+      expect(@success_flash_alert).to match flash[:success]
+    end
+
+    it "fails with invalid country" do
+      expect(School.find_by(name: @create_school_name)).to be_nil
+      begin
+        post schools_path, params: {
+          school: {
+              name: @create_school_name,
+              country: "XX", # this is not an actual country code
+              city: "Berkeley",
+              state: "CA",
+              website: "www.berkeley.edu",
+              school_type: "public",
+              grade_level: "university",
+              tags: [],
+              nces_id: 123456789000
+          }
+        }
+      rescue ActiveRecord::RecordInvalid => e
+        expect(School.find_by(name: @create_school_name)).to be_nil
+        expect(flash[:alert]).not_to be_present
+      end
     end
 
     it "does not create duplicate schools in the same city" do

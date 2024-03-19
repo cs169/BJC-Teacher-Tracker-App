@@ -23,8 +23,8 @@ class SchoolsController < ApplicationController
       @school = School.new(school_params)
     end
     load_ordered_schools
-    #the view file ensure that valid non-blank information is submitted with required,
-    #parameters, so we are guaranteed that no errors will occur with save!
+    # the view file ensure that valid non-blank information is submitted with required,
+    # parameters, so we are guaranteed that no errors will occur with save!
     @school.save!
     flash[:success] = "Created #{@school.name} successfully."
     redirect_to schools_path
@@ -42,7 +42,7 @@ class SchoolsController < ApplicationController
   def update
     @school = School.find(params[:id])
     @school.assign_attributes(school_params)
-    #again, view file parameters ensures that all info is valid
+    # again, view file parameters ensures that all info is valid
     @school.save!
     flash[:success] = "Updated #{@school.name} successfully."
     redirect_to school_path(@school)
