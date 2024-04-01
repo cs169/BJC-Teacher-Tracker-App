@@ -52,6 +52,7 @@ gem "httparty", "~> 0.21.0"
 
 gem "country_select", "~> 8.0"
 gem "annotate"
+gem "listen", "~> 3.3"
 
 group :development do
   # Intercept and view emails in a browser
@@ -61,7 +62,6 @@ group :development do
   gem "web-console"
 
   gem "rack-mini-profiler", "~> 2.0"
-  gem "listen", "~> 3.3"
 end
 
 group :linters, :development, :test do
