@@ -51,10 +51,9 @@ gem "httparty", "~> 0.21.0"
 
 
 gem "country_select", "~> 8.0"
+gem "annotate"
 
 group :development do
-  gem "annotate"
-
   # Intercept and view emails in a browser
   gem "letter_opener"
   gem "letter_opener_web", "~> 2"
