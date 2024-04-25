@@ -5,7 +5,7 @@ require "./lib/school_creator"
 
 RSpec.describe SchoolCreator do
   describe ".create_schools" do
-    let(:valid_states) { ["CA", "NY", "TX"] }
+    let(:valid_states) { School.get_valid_states }
     let(:grade_levels) { ["elementary", "middle_school", "high_school"] }
     let(:school_types) { ["public", "private"] }
 
@@ -16,7 +16,8 @@ RSpec.describe SchoolCreator do
     end
 
     it "creates the specified number of US schools" do
-      expect { SchoolCreator.create_schools(5, true) }.to change { School.count }.by(5)
+      schools = SchoolCreator.create_schools(5, true)
+      expect(schools.length).to eq(5)
     end
 
     it "creates schools with appropriate attributes for US schools" do

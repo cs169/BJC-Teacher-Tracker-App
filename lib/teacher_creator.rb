@@ -5,6 +5,7 @@ module TeacherCreator
     statuses = Teacher.statuses.keys
     education_levels = Teacher.education_levels.keys
     all_languages = Teacher.get_languages
+    teachers = []
 
     number_of_teachers.times do
       teacher = Teacher.create!(
@@ -27,6 +28,8 @@ module TeacherCreator
             primary: true
           )
       end
+      teachers.push(teacher)
     end
+    teachers
   end
 end
