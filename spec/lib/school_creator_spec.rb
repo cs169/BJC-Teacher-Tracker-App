@@ -4,8 +4,8 @@ require "rails_helper"
 require "./lib/school_creator"
 
 RSpec.describe SchoolCreator do
-  describe ".create_schools" do
-    let(:valid_states) { School.get_valid_states }
+  describe "#create_schools" do
+    let(:valid_states) { School::VALID_STATES }
     let(:grade_levels) { ["elementary", "middle_school", "high_school"] }
     let(:school_types) { ["public", "private"] }
 

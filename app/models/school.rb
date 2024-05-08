@@ -124,10 +124,6 @@ class School < ApplicationRecord
     validated.map(&:maps_marker_data).to_json
   end
 
-  def self.get_valid_states
-    VALID_STATES
-  end
-
   private
   def prefix_url(url)
     return unless url

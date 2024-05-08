@@ -11,10 +11,10 @@ namespace :db do
     school_ids = []
 
     # Create US schools
-    school_ids += SchoolCreator.create_schools(number_of_US_schools, true)
+    school_ids << SchoolCreator.create_schools(number_of_US_schools)
 
     # Create International schools
-    school_ids += SchoolCreator.create_schools(number_of_international_schools, false)
+    school_ids << SchoolCreator.create_schools(number_of_international_schools, international: true)
 
     if school_ids.empty?
       puts "No schools available to assign. Please create schools first."

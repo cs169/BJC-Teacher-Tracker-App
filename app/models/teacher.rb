@@ -301,10 +301,6 @@ class Teacher < ApplicationRecord
     non_primary_emails
   end
 
-  def self.get_languages
-    WORLD_LANGUAGES
-  end
-
   private
   def non_primary_emails
     # email_addresses.where(primary: false)&.pluck(:email)

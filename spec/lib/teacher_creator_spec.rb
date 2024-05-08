@@ -4,7 +4,7 @@ require "rails_helper"
 require "./lib/teacher_creator"
 
 RSpec.describe TeacherCreator do
-    describe ".create_teachers" do
+    describe "#create_teachers" do
       let(:school_ids) { [] }
       let(:statuses) { ["csp_teacher", "non_csp_teacher", "mixed_class"] }
       let(:education_levels) { ["middle_school", "high_school", "college"] }
