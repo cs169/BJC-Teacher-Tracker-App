@@ -8,7 +8,7 @@ module SchoolCreator
 
     school_ids = []
     number_of_schools.times do
-      country = international ? available_countries.sample :  ISO3166::Country["US"]
+      country = international ? available_countries.sample : ISO3166::Country["US"]
       state = country.states.keys.sample
       school = School.create!(
           name: Faker::Educator.university,
