@@ -95,7 +95,9 @@ Layout/EmptyLinesAroundModuleBody:
 # Use Ruby >= 1.9 syntax for hashes. Prefer { a: :b } over { :a => :b }.
 Style/HashSyntax:
   Enabled: true
-  EnforcedShorthandSyntax: consistent
+  EnforcedShorthandSyntax: never
+  # TODO: Enable this after upgrading rubocop, consistent would be preferred over never
+  # EnforcedShorthandSyntax: consistent
 
 # Method definitions after `private` or `protected` isolated calls need one
 # extra level of indentation.
