@@ -2,7 +2,6 @@
 
 module SchoolCreator
   def self.create_schools(number_of_schools, international: false)
-    valid_states = School::VALID_STATES
     grade_levels = School.grade_levels.keys
     school_types = School.school_types.keys
     available_countries = ISO3166::Country.all
