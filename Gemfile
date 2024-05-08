@@ -101,7 +101,6 @@ group :test do
   gem "rails-controller-testing"
 end
 
-# Dependencies for both development and testing
 group :development, :test do
   gem "faker"
 end
