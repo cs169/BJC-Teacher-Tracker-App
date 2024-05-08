@@ -13,7 +13,7 @@ module SchoolCreator
       school = School.create!(
           name: Faker::Educator.university,
           city: Faker::Address.city,
-          state: state,
+          state:,
           country: country.alpha2,
           website: Faker::Internet.url,
           grade_level: grade_levels.sample,
