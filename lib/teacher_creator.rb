@@ -4,7 +4,6 @@ module TeacherCreator
   def self.create_teachers(number_of_teachers, school_ids)
     statuses = Teacher.statuses.keys
     education_levels = Teacher.education_levels.keys
-    all_languages = Teacher.get_languages
     teachers = []
 
     number_of_teachers.times do
@@ -17,7 +16,7 @@ module TeacherCreator
           status: statuses.sample,
           more_info: Faker::Lorem.sentence(word_count: 20),
           education_level: education_levels.sample,
-          languages: all_languages.sample(rand(1..3))
+          languages: Teacher::WORLD_LANGUAGES.sample(rand(1..3))
         )
       if teacher.persisted?
         # Generate an email using the first_name and last_name from the teacher instance

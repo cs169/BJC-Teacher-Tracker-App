@@ -26,7 +26,7 @@ RSpec.describe TeacherCreator do
 
         allow(Teacher).to receive_message_chain(:statuses, :keys).and_return(statuses)
         allow(Teacher).to receive_message_chain(:education_levels, :keys).and_return(education_levels)
-        allow(Teacher).to receive(:get_languages).and_return(languages)
+        Teacher::WORLD_LANGUAGES = languages
       end
 
       it "creates the specified number of teachers" do

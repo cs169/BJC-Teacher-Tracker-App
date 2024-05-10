@@ -10,18 +10,17 @@ RSpec.describe SchoolCreator do
     let(:school_types) { ["public", "private"] }
 
     before do
-      allow(School).to receive(:get_valid_states).and_return(valid_states)
       allow(School).to receive_message_chain(:grade_levels, :keys).and_return(grade_levels)
       allow(School).to receive_message_chain(:school_types, :keys).and_return(school_types)
     end
 
     it "creates the specified number of US schools" do
-      schools = SchoolCreator.create_schools(5, true)
+      schools = SchoolCreator.create_schools(5)
       expect(schools.length).to eq(5)
     end
 
     it "creates schools with appropriate attributes for US schools" do
-      SchoolCreator.create_schools(1, true)
+      SchoolCreator.create_schools(1)
       school = School.last
 
       expect(school.country).to eq("US")
@@ -31,7 +30,7 @@ RSpec.describe SchoolCreator do
     end
 
     it "creates schools with no state for international schools" do
-      SchoolCreator.create_schools(1, false)
+      SchoolCreator.create_schools(1, international: true)
       school = School.last
 
       expect(school.state).to be_nil
